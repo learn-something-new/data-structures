@@ -1,7 +1,6 @@
-datastructures
-==============
+##Data Structures
 
-A collection of C++ code for me to re-learn data structures.
+A collection of C++ code for me to re-learn data structures including:
 
 * Stacks
 
