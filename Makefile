@@ -1,3 +1,3 @@
 program:
-	g++ -o queue queues.cpp
-	g++ -o stack stack.cpp
+	g++ -o bin/queue queues.cpp
+	g++ -o bin/stack stack.cpp
