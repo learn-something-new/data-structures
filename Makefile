@@ -8,3 +8,6 @@ program:
 	g++ -c -o linkedlist/lib/linkedlist.o linkedlist/linkedlist.cpp
 	g++ -c -o linkedlist/lib/main.o linkedlist/main.cpp
 	g++ -o bin/linkedlist linkedlist/lib/linkedlist.o linkedlist/lib/main.o
+	g++ -c -o stackedlist/lib/stack.o stackedlist/stack.cpp
+	g++ -c -o stackedlist/lib/main.o stackedlist/main.cpp
+	g++ -o bin/stackedlist stackedlist/lib/stack.o stackedlist/lib/main.o
