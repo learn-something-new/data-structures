@@ -50,6 +50,26 @@ void LinkedList::append(int num)
     }
 }
 
+void LinkedList::del(int num)
+{
+    node *q, *r;
+    q = p;
+
+    while( q != NULL)
+    {
+        if (q->data == num)
+        {
+            r->link = q->link;
+            delete q;
+
+            return;
+        }
+
+        r = q;
+        q = q->link;
+    }
+}
+
 void LinkedList::display()
 {
     node *q;

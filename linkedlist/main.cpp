@@ -13,5 +13,9 @@ int main()
 
     list.display();
 
+    list.del(4);
+
+    list.display();
+
     return 0;
 }
