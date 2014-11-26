@@ -11,3 +11,6 @@ program:
 	g++ -c -o stackedlist/lib/stack.o stackedlist/stack.cpp
 	g++ -c -o stackedlist/lib/main.o stackedlist/main.cpp
 	g++ -o bin/stackedlist stackedlist/lib/stack.o stackedlist/lib/main.o
+	g++ -c -o queuedlist/lib/queue.o queuedlist/queue.cpp
+	g++ -c -o queuedlist/lib/main.o queuedlist/main.cpp
+	g++ -o bin/queuedlist queuedlist/lib/queue.o queuedlist/lib/main.o
