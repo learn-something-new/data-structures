@@ -53,6 +53,22 @@ void LinkedList::add(int num)
 
 void LinkedList::del(int num)
 {
+    Node *temp = head;
+
+    while(temp)
+    {
+        if(temp->data == num)
+        {
+            std::cout << "deleting " << temp->data << std::endl;
+            Node *prev = temp->prev;
+            prev->next = temp->next;
+            delete temp;
+        }
+        else
+        {
+            temp = temp->next;
+        }
+    }
 }
 
 void LinkedList::displayReverse()

@@ -9,11 +9,6 @@ struct Node
         prev = NULL;
     }
 
-    ~Node()
-    {
-        std::cout << "destroying: " << data << std::endl;
-    }
-
     int data;
     Node *next;
     Node *prev;

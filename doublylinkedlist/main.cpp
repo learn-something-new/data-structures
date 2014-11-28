@@ -11,17 +11,9 @@ int main()
     list.add(17);
     list.add(71);
 
-/*
- *    list.display();
- *
- *    list.del(4);
- */
+    list.del(4);
 
     list.display();
-
-    std::cout << std::endl;
-
-    list.displayReverse();
 
     return 0;
 }
