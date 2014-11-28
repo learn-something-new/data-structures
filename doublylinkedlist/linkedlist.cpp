@@ -26,7 +26,7 @@ void LinkedList::add(int num)
     {
         Node *temp = head;
 
-        while(node->next != NULL)
+        while(temp->next != NULL)
         {
             temp = temp->next;
         }
