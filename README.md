@@ -9,8 +9,8 @@ A collection of C++ code for me to re-learn data structures including:
     A fixed size structure with add and del methods, following the FILO rule (first in, last out)
     
 * [**Linked Lists**](https://github.com/obihann/DataStructures/tree/master/linkedlist)
-
     A non-fixed (only restricted by avaliable memory) data structure with add and del methods. Each item or 'node' in     the list contains a pointer to the next item in the list. Their is no first or last out rule that applies to this     list as it allows the removal of any item in any order.
+
 * [**Stacked Linked Lists**](https://github.com/obihann/DataStructures/tree/master/stackedlist)
     A non-fixed (only restricted by avaliable memory) data structure with push and pop methods. Each item or 'node'      in the list contains a pointer to the next item in the list. This structure follows the FIFO rule (first in, first out).
     
