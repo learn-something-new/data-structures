@@ -10,14 +10,26 @@ LinkedList::LinkedList()
 
 LinkedList::~LinkedList()
 {
+    Node *temp = head;
+
+    if(temp)
+    {
+        while(temp && temp->next)
+        {
+
+            head = temp->next;
+            delete temp;
+            temp = head;
+        }
+
+        delete temp;
+    }
 }
 
 void LinkedList::add(int num)
 {
     Node *node = new Node();
     node->data = num;
-    node->prev = NULL;
-    node->next = NULL;
 
     if(head == NULL)
     {
