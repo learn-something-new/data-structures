@@ -15,18 +15,18 @@ void LinkedList::add(int num)
 {
     Node *node = new Node();
     node->data = num;
+    node->prev = NULL;
+    node->next = NULL;
 
     if(head == NULL)
     {
         head = node;
-        head->next = NULL;
-        head->prev = NULL;
     }
     else
     {
         Node *temp = head;
 
-        while(temp->next != NULL)
+        while(temp->next)
         {
             temp = temp->next;
         }
@@ -44,13 +44,10 @@ void LinkedList::display()
 {
     Node *temp = head;
 
-    if(temp != NULL)
+    while(temp)
     {
-        while(temp != NULL)
-        {
-            std::cout << temp->data << " ";
-            temp = temp->next;
-        }
+        std::cout << temp->data << std::endl;
+        temp = temp->next;
     }
 
 }
