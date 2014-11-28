@@ -5,6 +5,7 @@
 LinkedList::LinkedList()
 {
     head = NULL;
+    end = NULL;
 }
 
 LinkedList::~LinkedList()
@@ -21,6 +22,7 @@ void LinkedList::add(int num)
     if(head == NULL)
     {
         head = node;
+        end = node;
     }
     else
     {
@@ -33,11 +35,24 @@ void LinkedList::add(int num)
 
         node->prev = temp;
         temp->next = node;
+        end = node;
     }
 }
 
 void LinkedList::del(int num)
 {
+}
+
+void LinkedList::displayReverse()
+{
+    Node *temp = end;
+
+    while(temp)
+    {
+        std::cout << temp->data << std::endl;
+        temp = temp->prev;
+    }
+
 }
 
 void LinkedList::display()

@@ -12,6 +12,7 @@ class LinkedList
 {
     private:
         Node *head;
+        Node *end;
 
     public:
         LinkedList();
@@ -19,4 +20,5 @@ class LinkedList
         void add(int num);
         void del(int num);
         void display();
+        void displayReverse();
 };

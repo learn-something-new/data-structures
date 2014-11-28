@@ -19,5 +19,9 @@ int main()
 
     list.display();
 
+    std::cout << std::endl;
+
+    list.displayReverse();
+
     return 0;
 }
