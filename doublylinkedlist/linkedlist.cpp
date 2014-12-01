@@ -57,17 +57,21 @@ void LinkedList::del(int num)
 
     while(temp)
     {
+        Node *next = temp->next;
+
         if(temp->data == num)
         {
-            std::cout << "deleting " << temp->data << std::endl;
-            Node *prev = temp->prev;
-            prev->next = temp->next;
+            if(temp->prev)
+            {
+                temp->prev->next = next;
+            }
+
+            next->prev = temp->prev;
             delete temp;
+            break;
         }
-        else
-        {
-            temp = temp->next;
-        }
+
+        temp = next;
     }
 }
 
