@@ -77,6 +77,15 @@ Node* BinarySearchTree::next(Node *node)
 {
     Node* temp = NULL;
 
+    return temp;
+}
+
+void BinarySearchTree::del(int n)
+{
+}
+
+void BinarySearchTree::printTree(Node *node)
+{
     std::cout << node->data << std::endl;
 
     if(BinarySearchTree::hasChildren(node))
@@ -86,64 +95,19 @@ Node* BinarySearchTree::next(Node *node)
 
         if(left)
         {
-            temp = left;
-            BinarySearchTree::next(temp);
+            BinarySearchTree::printTree(left);
         }
 
         if(right)
         {
-            temp = right;
-            BinarySearchTree::next(temp);
+            BinarySearchTree::printTree(right);
         }
     }
-
-    return temp;
-}
-
-void BinarySearchTree::del(int n)
-{
 }
 
 void BinarySearchTree::display()
 {
     Node *temp = root;
 
-    /*
-     *while(temp)
-     *{
-     *    temp = BinarySearchTree::next(temp);
-     *}
-     */
-
-    BinarySearchTree::next(temp);
+    BinarySearchTree::printTree(temp);
 }
-
-/*
- *    if(temp)
- *    {
- *        if(temp->right)
- *        {
- *            temp = root->right;
- *
- *            while(temp)
- *            {
- *                std::cout << temp->data << std::endl;
- *                temp = temp->right;
- *            }
- *        }
- *
- *        temp = root;
- *        std::cout << temp->data << std::endl;
- *
- *        if(temp->left)
- *        {
- *            temp = root->left;
- *
- *            while(temp)
- *            {
- *                std::cout << temp->data << std::endl;
- *                temp = temp->left;
- *            }
- *        }
- *    }
- */
