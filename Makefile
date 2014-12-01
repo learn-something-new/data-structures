@@ -14,3 +14,6 @@ program:
 	g++ -c -o queuedlist/lib/queue.o queuedlist/queue.cpp
 	g++ -c -o queuedlist/lib/main.o queuedlist/main.cpp
 	g++ -o bin/queuedlist queuedlist/lib/queue.o queuedlist/lib/main.o
+	g++ -c -o doublylinkedlist/lib/linkedlist.o doublylinkedlist/linkedlist.cpp
+	g++ -c -o doublylinkedlist/lib/main.o doublylinkedlist/main.cpp
+	g++ -o bin/doublylinkedlist doublylinkedlist/lib/linkedlist.o doublylinkedlist/lib/main.o
