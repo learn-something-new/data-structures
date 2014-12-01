@@ -149,19 +149,62 @@ Node* BinarySearchTree::find(int n, Node *node, bool del)
             {
                 if(temp == right)
                 {
-                    delete temp;
                     node->right = NULL;
+
+                    if(temp->right)
+                    {
+                        BinarySearchTree::addBranch(temp->right);
+                    }
+
+                    if(temp->left)
+                    {
+                        BinarySearchTree::addBranch(temp->left);
+                    }
+
+                    delete temp;
                 }
                 else if(temp == left)
                 {
-                    delete temp;
                     node->left = NULL;
+
+                    if(temp->right)
+                    {
+                        BinarySearchTree::addBranch(temp->right);
+                    }
+
+                    if(temp->left)
+                    {
+                        BinarySearchTree::addBranch(temp->left);
+                    }
+
+                    delete temp;
                 }
             }
         }
     }
 
     return temp;
+}
+
+void BinarySearchTree::addBranch(Node *node)
+{
+    BinarySearchTree::add(node->data);
+
+    if(BinarySearchTree::hasChildren(node))
+    {
+        Node* left = node->left;
+        Node* right = node->right;
+
+        if(left)
+        {
+            BinarySearchTree::addBranch(left);
+        }
+
+        if(right)
+        {
+            BinarySearchTree::addBranch(right);
+        }
+    }
 }
 
 void BinarySearchTree::printTree(Node *node)

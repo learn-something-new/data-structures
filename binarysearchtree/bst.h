@@ -24,6 +24,7 @@ class BinarySearchTree
         Node *root;
         bool hasChildren(Node *node);
         void printTree(Node *node);
+        void addBranch(Node *node);
         Node* deleteBranch(Node *node);
         Node* find(int n, Node *node, bool del = false);
 
