@@ -22,7 +22,9 @@ struct Node
 class BinarySearchTree
 {
     private:
-       Node *root;
+        Node *root;
+        bool hasChildren(Node *node);
+        Node* next(Node *node);
 
     public:
         BinarySearchTree();
