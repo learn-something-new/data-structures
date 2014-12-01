@@ -116,22 +116,13 @@ void BinarySearchTree::del(int n)
     {
         Node *temp;
 
-        temp = BinarySearchTree::find(n, root);
-
-        if(temp)
-        {
-            if(BinarySearchTree::hasChildren(temp))
-            {
-            }
-        }
+        BinarySearchTree::find(n, root, true);
     }
 }
 
-Node* BinarySearchTree::find(int n, Node *node)
+Node* BinarySearchTree::find(int n, Node *node, bool del)
 {
     Node *temp = NULL;
-
-    std::cout << node->data << std::endl;
 
     if(node->data == n)
     {
@@ -146,12 +137,26 @@ Node* BinarySearchTree::find(int n, Node *node)
 
             if(left)
             {
-               temp = BinarySearchTree::find(n, left);
+               temp = BinarySearchTree::find(n, left, del);
             }
 
             if(!temp && right)
             {
-                temp = BinarySearchTree::find(n, right);
+                temp = BinarySearchTree::find(n, right, del);
+            }
+
+            if(del && temp)
+            {
+                if(temp == right)
+                {
+                    delete temp;
+                    node->right = NULL;
+                }
+                else if(temp == left)
+                {
+                    delete temp;
+                    node->left = NULL;
+                }
             }
         }
     }
