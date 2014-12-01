@@ -161,7 +161,7 @@ Node* BinarySearchTree::find(int n, Node *node, bool del)
                         BinarySearchTree::addBranch(temp->left);
                     }
 
-                    delete temp;
+                    BinarySearchTree::deleteBranch(temp);
                 }
                 else if(temp == left)
                 {
@@ -177,7 +177,7 @@ Node* BinarySearchTree::find(int n, Node *node, bool del)
                         BinarySearchTree::addBranch(temp->left);
                     }
 
-                    delete temp;
+                    BinarySearchTree::deleteBranch(temp);
                 }
             }
         }
