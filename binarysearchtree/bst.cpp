@@ -9,6 +9,31 @@ BinarySearchTree::BinarySearchTree()
 
 BinarySearchTree::~BinarySearchTree()
 {
+    if(root)
+    {
+        delete BinarySearchTree::deleteBranch(root);
+    }
+}
+
+Node* BinarySearchTree::deleteBranch(Node *node)
+{
+    if(BinarySearchTree::hasChildren(node))
+    {
+        Node* left = node->left;
+        Node* right = node->right;
+
+        if(left)
+        {
+            delete BinarySearchTree::deleteBranch(left);
+        }
+
+        if(right)
+        {
+           delete BinarySearchTree::deleteBranch(right);
+        }
+    }
+
+    return node;
 }
 
 void BinarySearchTree::add(int n)

@@ -25,6 +25,7 @@ class BinarySearchTree
         Node *root;
         bool hasChildren(Node *node);
         void printTree(Node *node);
+        Node* deleteBranch(Node *node);
 
     public:
         BinarySearchTree();

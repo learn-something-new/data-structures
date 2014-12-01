@@ -14,7 +14,9 @@ int main()
     bst.add(9);
     bst.add(100);
 
-    bst.display();
+    /*
+     *bst.display();
+     */
 
     return 0;
 }
