@@ -17,3 +17,6 @@ program:
 	g++ -c -o doublylinkedlist/lib/linkedlist.o doublylinkedlist/linkedlist.cpp
 	g++ -c -o doublylinkedlist/lib/main.o doublylinkedlist/main.cpp
 	g++ -o bin/doublylinkedlist doublylinkedlist/lib/linkedlist.o doublylinkedlist/lib/main.o
+	g++ -c -o binarysearchtree/lib/bst.o binarysearchtree/bst.cpp
+	g++ -c -o binarysearchtree/lib/main.o binarysearchtree/main.cpp
+	g++ -o bin/binarysearchtree binarysearchtree/lib/bst.o binarysearchtree/lib/main.o
