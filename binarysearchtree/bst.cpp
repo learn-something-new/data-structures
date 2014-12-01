@@ -73,13 +73,6 @@ bool BinarySearchTree::hasChildren(Node *node)
     return children;
 }
 
-Node* BinarySearchTree::next(Node *node)
-{
-    Node* temp = NULL;
-
-    return temp;
-}
-
 void BinarySearchTree::del(int n)
 {
 }
@@ -107,7 +100,8 @@ void BinarySearchTree::printTree(Node *node)
 
 void BinarySearchTree::display()
 {
-    Node *temp = root;
-
-    BinarySearchTree::printTree(temp);
+    if(root)
+    {
+        BinarySearchTree::printTree(root);
+    }
 }
