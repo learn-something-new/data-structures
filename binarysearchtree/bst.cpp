@@ -18,7 +18,6 @@ void BinarySearchTree::add(int n)
 
     if(root == NULL)
     {
-        std::cout << "adding " << node->data << " (root)" << std:: endl;
         root = node;
     }
     else
@@ -46,19 +45,17 @@ void BinarySearchTree::add(int n)
                 }
                 else
                 {
-                    return;
+                    break;
                 }
             }
         }
 
         if(n > temp->data)
         {
-            std::cout << "adding " << node->data << " (right) child of " << temp->data << std:: endl;
             temp->right = node;
         }
         else
         {
-            std::cout << "adding " << node->data << " (left) child of " << temp->data << std:: endl;
             temp->left = node;
         }
     }
@@ -80,25 +77,24 @@ Node* BinarySearchTree::next(Node *node)
 {
     Node* temp = NULL;
 
+    std::cout << node->data << std::endl;
+
     if(BinarySearchTree::hasChildren(node))
     {
-        Node* right = temp->right;;
-        Node* left = temp->left;;
+        Node* left = node->left;
+        Node* right = node->right;
 
-        while(right)
+        if(left)
         {
-            right = BinarySearchTree::next(temp);
+            temp = left;
+            BinarySearchTree::next(temp);
         }
 
-        while(left)
+        if(right)
         {
-            left = BinarySearchTree::next(temp);
+            temp = right;
+            BinarySearchTree::next(temp);
         }
-    }
-
-    if(temp)
-    {
-        std::cout << temp-> data << std::endl;
     }
 
     return temp;
@@ -112,12 +108,14 @@ void BinarySearchTree::display()
 {
     Node *temp = root;
 
-    while(temp)
-    {
-        temp = BinarySearchTree::next(temp);
-    }
+    /*
+     *while(temp)
+     *{
+     *    temp = BinarySearchTree::next(temp);
+     *}
+     */
 
-    std::cout << root->data << std::endl;
+    BinarySearchTree::next(temp);
 }
 
 /*
