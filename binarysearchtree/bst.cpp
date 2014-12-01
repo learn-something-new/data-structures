@@ -98,8 +98,65 @@ bool BinarySearchTree::hasChildren(Node *node)
     return children;
 }
 
+Node* BinarySearchTree::find(int n)
+{
+    Node* temp = NULL;
+
+    if(root)
+    {
+        temp = BinarySearchTree::find(n, root);
+    }
+
+    return temp;
+}
+
 void BinarySearchTree::del(int n)
 {
+    if(root)
+    {
+        Node *temp;
+
+        temp = BinarySearchTree::find(n, root);
+
+        if(temp)
+        {
+            if(BinarySearchTree::hasChildren(temp))
+            {
+            }
+        }
+    }
+}
+
+Node* BinarySearchTree::find(int n, Node *node)
+{
+    Node *temp = NULL;
+
+    std::cout << node->data << std::endl;
+
+    if(node->data == n)
+    {
+        temp = node;
+    }
+    else
+    {
+        if(BinarySearchTree::hasChildren(node))
+        {
+            Node* left = node->left;
+            Node* right = node->right;
+
+            if(left)
+            {
+               temp = BinarySearchTree::find(n, left);
+            }
+
+            if(!temp && right)
+            {
+                temp = BinarySearchTree::find(n, right);
+            }
+        }
+    }
+
+    return temp;
 }
 
 void BinarySearchTree::printTree(Node *node)

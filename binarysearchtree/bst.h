@@ -15,7 +15,6 @@ struct Node
 
     ~Node()
     {
-        std::cout << "destroying: " << data << std::endl;
     }
 };
 
@@ -26,6 +25,7 @@ class BinarySearchTree
         bool hasChildren(Node *node);
         void printTree(Node *node);
         Node* deleteBranch(Node *node);
+        Node* find(int n, Node *node);
 
     public:
         BinarySearchTree();
@@ -33,5 +33,6 @@ class BinarySearchTree
         void add(int n);
         void del(int n);
         void display();
+        Node* find(int n);
 };
 
