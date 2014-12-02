@@ -1,32 +1,14 @@
 // in avl.h
 #include <iostream>
-
-struct Node
-{
-    int data;
-    Node *left;
-    Node *right;
-
-    Node()
-    {
-        left = NULL;
-        right = NULL;
-    }
-
-    ~Node()
-    {
-    }
-};
+#include "node.h"
 
 class AVLTree
 {
     private:
         Node *root;
-        bool hasChildren(Node *node);
         void printTree(Node *node);
         void addBranch(Node *node);
         void reAddBranch(Node *node);
-        Node* deleteBranch(Node *node);
         Node* find(int n, Node *node, bool del = false);
 
     public:
