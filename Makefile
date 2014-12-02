@@ -20,3 +20,6 @@ program:
 	g++ -c -o binarysearchtree/lib/bst.o binarysearchtree/bst.cpp
 	g++ -c -o binarysearchtree/lib/main.o binarysearchtree/main.cpp
 	g++ -o bin/binarysearchtree binarysearchtree/lib/bst.o binarysearchtree/lib/main.o
+	g++ -c -o avl/lib/avl.o avl/avl.cpp
+	g++ -c -o avl/lib/main.o avl/main.cpp
+	g++ -o bin/avltree avl/lib/avl.o avl/lib/main.o
