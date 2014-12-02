@@ -9,6 +9,7 @@ class AVLTree
         void printTree(Node *node);
         void addBranch(Node *node);
         void reAddBranch(Node *node);
+        void addNode(Node *tree, Node *node, bool &fixBalance);
         Node* find(int n, Node *node, bool del = false);
 
     public:

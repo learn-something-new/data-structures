@@ -15,55 +15,49 @@ AVLTree::~AVLTree()
     }
 }
 
+void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
+{
+
+    if(node->getData() < tree->getData())
+    {
+        if(tree->getLeft() == NULL)
+        {
+            tree->setLeft(node);
+            node->setParent(tree);
+            fixBalance = true;
+        }
+        else
+        {
+            addNode(tree->getLeft(), node, fixBalance);
+        }
+    }
+    else
+    {
+        if(tree->getRight() == NULL)
+        {
+            tree->setRight(node);
+            node->setParent(tree);
+            fixBalance = true;
+        }
+        else
+        {
+            addNode(tree->getRight(), node, fixBalance);
+        }
+    }
+}
+
 void AVLTree::add(int n)
 {
-    Node *node;
+    Node *node = new Node(n);
 
     if(root == NULL)
     {
-        node = new Node(n);
         root = node;
     }
     else
     {
-        Node *temp = root;
-
-        while(temp->hasChildren())
-        {
-            if(n > temp->getData())
-            {
-                if(temp->getRight())
-                {
-                    temp = temp->getRight();
-                }
-                else
-                {
-                    break;
-                }
-            }
-            else
-            {
-                if(temp->getLeft())
-                {
-                    temp = temp->getLeft();
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-        node = new Node(n, temp);
-
-        if(n > temp->getData())
-        {
-            temp->setRight(node);
-        }
-        else
-        {
-            temp->setLeft(node);
-        }
+        bool fixBalance = false;
+        AVLTree::addNode(root, node, fixBalance);
     }
 }
 
