@@ -18,30 +18,30 @@ AVLTree::~AVLTree()
 void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
 {
 
-    if(node->getData() < tree->getData())
+    if(node->data() < tree->data())
     {
-        if(tree->getLeft() == NULL)
+        if(tree->left() == NULL)
         {
-            tree->setLeft(node);
-            node->setParent(tree);
+            tree->left(node);
+            node->parent(tree);
             fixBalance = true;
         }
         else
         {
-            addNode(tree->getLeft(), node, fixBalance);
+            addNode(tree->left(), node, fixBalance);
         }
     }
     else
     {
-        if(tree->getRight() == NULL)
+        if(tree->right() == NULL)
         {
-            tree->setRight(node);
-            node->setParent(tree);
+            tree->right(node);
+            node->parent(tree);
             fixBalance = true;
         }
         else
         {
-            addNode(tree->getRight(), node, fixBalance);
+            addNode(tree->right(), node, fixBalance);
         }
     }
 }
@@ -87,7 +87,7 @@ Node* AVLTree::find(int n, Node *node, bool del)
 {
     Node *temp = NULL;
 
-    if(node->getData() == n)
+    if(node->data() == n)
     {
         temp = node;
     }
@@ -95,8 +95,8 @@ Node* AVLTree::find(int n, Node *node, bool del)
     {
         if(node->hasChildren())
         {
-            Node* left = node->getLeft();
-            Node* right = node->getRight();
+            Node* left = node->left();
+            Node* right = node->right();
 
             if(left)
             {
@@ -104,7 +104,7 @@ Node* AVLTree::find(int n, Node *node, bool del)
 
                 if(del && temp == left)
                 {
-                    node->setLeft(NULL);
+                    node->left(NULL);
                     AVLTree::reAddBranch(temp);
                 }
             }
@@ -115,7 +115,7 @@ Node* AVLTree::find(int n, Node *node, bool del)
 
                 if(del && temp == right)
                 {
-                    node->setRight(NULL);
+                    node->right(NULL);
                     AVLTree::reAddBranch(temp);
                 }
             }
@@ -127,14 +127,14 @@ Node* AVLTree::find(int n, Node *node, bool del)
 
 void AVLTree::reAddBranch(Node *node)
 {
-    if(node->getRight())
+    if(node->right())
     {
-        AVLTree::addBranch(node->getRight());
+        AVLTree::addBranch(node->right());
     }
 
-    if(node->getLeft())
+    if(node->left())
     {
-        AVLTree::addBranch(node->getLeft());
+        AVLTree::addBranch(node->left());
     }
 
     delete node;
@@ -142,12 +142,12 @@ void AVLTree::reAddBranch(Node *node)
 
 void AVLTree::addBranch(Node *node)
 {
-    AVLTree::add(node->getData());
+    AVLTree::add(node->data());
 
     if(node->hasChildren())
     {
-        Node* left = node->getLeft();
-        Node* right = node->getRight();
+        Node* left = node->left();
+        Node* right = node->right();
 
         if(left)
         {
@@ -163,12 +163,12 @@ void AVLTree::addBranch(Node *node)
 
 void AVLTree::printTree(Node *node)
 {
-    std::cout << node->getData() << std::endl;
+    std::cout << node->data() << std::endl;
 
     if(node->hasChildren())
     {
-        Node* left = node->getLeft();
-        Node* right = node->getRight();
+        Node* left = node->left();
+        Node* right = node->right();
 
         if(left)
         {

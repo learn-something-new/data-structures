@@ -4,52 +4,40 @@
 
 Node::Node()
 {
-    left = NULL;
-    right = NULL;
-    parent = NULL;
+    nodeLeft = NULL;
+    nodeRight = NULL;
+    nodeParent = NULL;
 }
 
-Node::Node(int n, Node *parent)
+Node::Node(int n, Node *nodeParent)
 {
-    data = n;
-    left = NULL;
-    right = NULL;
-    parent = parent;
+    nData = n;
+    nodeLeft = NULL;
+    nodeRight = NULL;
+    nodeParent = nodeParent;
 }
 
 Node::~Node()
 {
     Node *temp;
-    std::cout << "deleting " << data << std::endl;
+    std::cout << "deleting " << nData << std::endl;
 
-    if(left)
+    if(nodeLeft)
     {
-        temp = left;
-        left = NULL;
+        temp = nodeLeft;
+        nodeLeft = NULL;
         delete temp;
     }
 
-    if(right)
+    if(nodeRight)
     {
-        temp = right;
-        right = NULL;
+        temp = nodeRight;
+        nodeRight = NULL;
         delete temp;
     }
 }
 
-bool Node::hasChildren()
-{
-    bool status = false;
-
-    if(left || right)
-    {
-        status = true;
-    }
-
-    return status;
-}
-
-void Node::add(int n, Node *parent)
+void Node::add(int n, Node *nodeParent)
 {
 }
 
@@ -57,37 +45,54 @@ void Node::del(int n)
 {
 }
 
-int Node::getData()
+int Node::data()
 {
-    return data;
+    return nData;
 };
 
-Node* Node::getLeft()
+void Node::data(int n)
 {
-    return left;
+    nData = n;
 }
 
-Node* Node::getRight()
+Node* Node::left()
 {
-    return right;
+    return nodeLeft;
 }
 
-Node* Node::getParent()
+void Node::left(Node *node)
 {
-    return right;
+    nodeLeft = node;
 }
 
-void Node::setParent(Node *node)
+Node* Node::right()
 {
-    parent = node;
+    return nodeRight;
 }
 
-void Node::setLeft(Node *node)
+void Node::right(Node *node)
 {
-    left = node;
+    nodeRight = node;
 }
 
-void Node::setRight(Node *node)
+Node* Node::parent()
 {
-    right = node;
+    return nodeRight;
+}
+
+void Node::parent(Node *node)
+{
+    nodeParent = node;
+}
+
+bool Node::hasChildren()
+{
+    bool status = false;
+
+    if(nodeLeft || nodeRight)
+    {
+        status = true;
+    }
+
+    return status;
 }
