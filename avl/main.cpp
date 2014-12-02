@@ -12,10 +12,10 @@ int main()
     avl.add(3);
     avl.add(1);
     avl.add(12);
-    avl.add(9);
-    avl.add(100);
+    //avl.add(9);
+    //avl.add(100);
 
-    avl.del(12);
+    //avl.del(12);
 
     avl.display();
 

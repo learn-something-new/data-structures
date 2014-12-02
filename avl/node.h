@@ -33,6 +33,8 @@ struct Node
         int data();
         void data(int n);
 
+        void increment();
+        void decrement();
         bool hasChildren();
 };
 

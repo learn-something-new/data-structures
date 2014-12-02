@@ -4,6 +4,7 @@
 
 Node::Node()
 {
+    nBalanceFactor = 0;
     nodeLeft = NULL;
     nodeRight = NULL;
     nodeParent = NULL;
@@ -12,6 +13,7 @@ Node::Node()
 Node::Node(int n, Node *nodeParent)
 {
     nData = n;
+    nBalanceFactor = 0;
     nodeLeft = NULL;
     nodeRight = NULL;
     nodeParent = nodeParent;
@@ -83,6 +85,26 @@ Node* Node::parent()
 void Node::parent(Node *node)
 {
     nodeParent = node;
+}
+
+void Node::balanceFactor(int n)
+{
+    nBalanceFactor = n;
+}
+
+int Node::balanceFactor()
+{
+    return nBalanceFactor;
+}
+
+void Node::increment()
+{
+    nBalanceFactor++;
+}
+
+void Node::decrement()
+{
+    nBalanceFactor--;
 }
 
 bool Node::hasChildren()

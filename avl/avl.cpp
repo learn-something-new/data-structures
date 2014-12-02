@@ -17,11 +17,11 @@ AVLTree::~AVLTree()
 
 void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
 {
-
-    if(node->data() < tree->data())
+    if(node->data() <= tree->data())
     {
         if(tree->left() == NULL)
         {
+            std::cout << "adding " << node->data() << " to the left of " << tree->data() << std::endl;
             tree->left(node);
             node->parent(tree);
             fixBalance = true;
@@ -30,11 +30,31 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
         {
             addNode(tree->left(), node, fixBalance);
         }
+
+        if(fixBalance)
+        {
+            switch(tree->balanceFactor())
+            {
+                case -1:
+                    tree->decrement();
+                    fixLeftTree(tree, fixBalance);
+                    break;
+                case 0:
+                    tree->decrement();
+                    fixBalance = true;
+                    break;
+                case 1:
+                    tree->decrement();
+                    fixBalance = false;
+                    break;
+            }
+        }
     }
     else
     {
         if(tree->right() == NULL)
         {
+            std::cout << "adding " << node->data() << " to the right of " << tree->data() << std::endl;
             tree->right(node);
             node->parent(tree);
             fixBalance = true;
@@ -42,6 +62,25 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
         else
         {
             addNode(tree->right(), node, fixBalance);
+        }
+
+        if(fixBalance)
+        {
+            switch(tree->balanceFactor())
+            {
+                case -1:
+                    tree->increment();
+                    fixRightTree(tree, fixBalance);
+                    break;
+                case 0:
+                    tree->increment();
+                    fixBalance = true;
+                    break;
+                case 1:
+                    tree->increment();
+                    fixBalance = false;
+                    break;
+            }
         }
     }
 }
@@ -53,6 +92,7 @@ void AVLTree::add(int n)
     if(root == NULL)
     {
         root = node;
+        std::cout << "adding root node " << node->data() << std::endl;
     }
     else
     {
@@ -187,5 +227,101 @@ void AVLTree::display()
     if(root)
     {
         AVLTree::printTree(root);
+    }
+}
+
+void AVLTree::leftRotation(Node *c)
+{
+    Node *a = c->parent();
+    std::cout << "left rotate on " << c->data() << std::endl;
+    std::cout << "parent is " << a->data() << std::endl;
+
+    if(a->parent())
+    {
+        if(a->parent()->left() == a)
+        {
+            a->parent()->left(c);
+        }
+        else
+        {
+            a->parent()->right(c);
+        }
+    }
+
+    Node *d = c->left();
+    c->left(a);
+    a->right(d);
+
+    if(d)
+    {
+        d->parent(a);
+    }
+
+    c->parent(a->parent());
+    a->parent(c);
+
+    a->balanceFactor(0);
+    c->balanceFactor(0);
+}
+
+void AVLTree::rightRotation(Node *b)
+{
+    Node *a = b->parent();
+
+    std::cout << "right rotate on " << b->data() << std::endl;
+
+    if(a->parent())
+    {
+        if(a->parent()->left() == a)
+        {
+            a->parent()->left(b);
+        }
+        else
+        {
+            a->parent()->right(b);
+        }
+    }
+
+    Node *e = b->right();
+    b->right(a);
+    a->left(e);
+
+    if(e)
+    {
+        e->parent(a);
+    }
+
+    b->parent(a->parent());
+    a->parent(b);
+
+    a->balanceFactor(0);
+    b->balanceFactor(0);
+}
+
+void AVLTree::fixRightTree(Node *node, bool &fixBalance)
+{
+    if(node->left()->balanceFactor() == -1)
+    {
+        leftRotation(node->right());
+        fixBalance = false;
+    }
+
+    if(node->parent()->parent() == NULL)
+    {
+        root = node->parent();
+    }
+}
+
+void AVLTree::fixLeftTree(Node *node, bool &fixBalance)
+{
+    if(node->right()->balanceFactor() == -1)
+    {
+        rightRotation(node->left());
+        fixBalance = false;
+    }
+
+    if(node->parent()->parent() == NULL)
+    {
+        root = node->parent();
     }
 }

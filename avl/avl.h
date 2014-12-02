@@ -19,5 +19,9 @@ class AVLTree
         void del(int n);
         void display();
         Node* find(int n);
+        void leftRotation(Node *node);
+        void rightRotation(Node *node);
+        void fixRightTree(Node *node, bool &fixBalance);
+        void fixLeftTree(Node *node, bool &fixBalance);
 };
 
