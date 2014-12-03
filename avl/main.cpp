@@ -4,20 +4,30 @@
 
 int main()
 {
-    AVLTree avl;
-    Node *temp;
+    AVLTree *avl = new AVLTree();
 
-    avl.add(5);
-    avl.add(7);
-    avl.add(3);
-    avl.add(1);
-    avl.add(12);
-    //avl.add(9);
-    //avl.add(100);
+    std::cout << "adding 5" << std::endl;
+    avl->add(5);
 
-    //avl.del(12);
+    std::cout << "adding 3" << std::endl;
+    avl->add(3);
 
-    avl.display();
+    std::cout << "adding 12" << std::endl;
+    avl->add(12);
+
+    std::cout << "adding 9" << std::endl;
+    avl->add(9);
+
+    std::cout << "adding 7" << std::endl;
+    avl->add(7);
+
+    std::cout << "adding 1" << std::endl;
+    avl->add(1);
+
+    std::cout << "adding 100" << std::endl;
+    avl->add(100);
+
+    delete avl;
 
     return 0;
 }

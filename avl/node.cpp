@@ -21,22 +21,23 @@ Node::Node(int n, Node *nodeParent)
 
 Node::~Node()
 {
-    Node *temp;
     std::cout << "deleting " << nData << std::endl;
 
     if(nodeLeft)
     {
-        temp = nodeLeft;
+        Node *temp = nodeLeft;
         nodeLeft = NULL;
         delete temp;
     }
 
     if(nodeRight)
     {
-        temp = nodeRight;
+        Node *temp = nodeRight;
         nodeRight = NULL;
         delete temp;
     }
+
+    nodeParent = NULL;
 }
 
 void Node::add(int n, Node *nodeParent)
