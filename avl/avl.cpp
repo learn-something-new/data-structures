@@ -206,7 +206,7 @@ void AVLTree::addBranch(Node *node)
 
 void AVLTree::printTree(Node *node)
 {
-    std::cout << node->data() << std::endl;
+    std::cout << node->data() << " ";
 
     if(node->hasChildren())
     {
@@ -230,6 +230,7 @@ void AVLTree::display()
     if(root)
     {
         AVLTree::printTree(root);
+        std::cout << std::endl;
     }
 }
 

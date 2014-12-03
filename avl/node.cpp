@@ -21,8 +21,6 @@ Node::Node(int n, Node *nodeParent)
 
 Node::~Node()
 {
-    std::cout << "deleting " << nData << std::endl;
-
     if(nodeLeft)
     {
         Node *temp = nodeLeft;
