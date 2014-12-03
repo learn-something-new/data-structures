@@ -2,6 +2,41 @@
 #include <iostream>
 #include "avl.h"
 
+void printChildren(Node * node, bool parent = false)
+{
+    std::string strRText = "the right node was ";
+    std::string strLText = "the left node was ";
+
+    if(parent)
+    {
+        std::string strRText = "the parents right node was ";
+        std::string strLText = "the parents left node was ";
+    }
+    else
+    {
+        std::cout << "the parent is " << node->parent()->data() << std::endl;
+    }
+
+
+    if(node->left())
+    {
+        std::cout << strLText << node->left()->data() << std::endl;
+    }
+    else
+    {
+        std::cout << strLText << "null" << std::endl;
+    }
+
+    if(node->right())
+    {
+        std::cout << strRText << node->right()->data() << std::endl;
+    }
+    else
+    {
+        std::cout << strRText << "null" << std::endl;
+    }
+}
+
 AVLTree::AVLTree()
 {
     root = NULL;
@@ -21,9 +56,11 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
     {
         if(tree->left() == NULL)
         {
-            std::cout << "adding " << node->data() << " to the left of " << tree->data() << std::endl;
+            std::cout << "adding " << node->data() << std::endl;
             tree->left(node);
             node->parent(tree);
+            std::cout << tree->left()->data() << " is the left child of " << tree->data() << std::endl;
+            std::cout << node->data() << " is the child of " << node->parent()->data() << std::endl;
             fixBalance = true;
         }
         else
@@ -54,9 +91,11 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
     {
         if(tree->right() == NULL)
         {
-            std::cout << "adding " << node->data() << " to the right of " << tree->data() << std::endl;
+            std::cout << "adding " << node->data() << std::endl;
             tree->right(node);
             node->parent(tree);
+            std::cout << tree->right()->data() << " is the right child of " << tree->data() << std::endl;
+            std::cout << node->data() << " is the child of " << node->parent()->data() << std::endl;
             fixBalance = true;
         }
         else
@@ -234,10 +273,13 @@ void AVLTree::leftRotation(Node *c)
 {
     Node *a = c->parent();
     std::cout << "left rotate on " << c->data() << std::endl;
-    std::cout << "parent is " << a->data() << std::endl;
+
+    printChildren(c);
+    printChildren(a, true);
 
     if(a->parent())
     {
+        std::cout << "parent's parent is " << a->parent()->data() << std::endl;
         if(a->parent()->left() == a)
         {
             a->parent()->left(c);
@@ -251,6 +293,16 @@ void AVLTree::leftRotation(Node *c)
     Node *d = c->left();
     c->left(a);
     a->right(d);
+
+    if(c->left())
+    {
+        std::cout << "the left node is " << c->left()->data() << std::endl;
+    }
+
+    if(d->left())
+    {
+        std::cout << "the right node is " << d->left()->data() << std::endl;
+    }
 
     if(d)
     {
@@ -269,6 +321,9 @@ void AVLTree::rightRotation(Node *b)
     Node *a = b->parent();
 
     std::cout << "right rotate on " << b->data() << std::endl;
+
+    printChildren(b);
+    printChildren(a, true);
 
     if(a->parent())
     {
