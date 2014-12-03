@@ -23,8 +23,8 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
         {
             tree->left(node);
             node->parent(tree);
-            std::cout << node->data() << " as left child of parent " << node->parent()->data() << ", parent should be " << tree->data() << std::endl;
-            std::cout << tree->parent() << std::endl;
+            //std::cout << node->data() << " as left child of parent " << node->parent()->data() << ", parent should be " << tree->data() << std::endl;
+            //std::cout << tree->parent() << std::endl;
             fixBalance = true;
         }
         else
@@ -38,16 +38,15 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
             {
                 case -1:
                     fixLeftTree(tree, fixBalance);
-                    AVLTree::display();
                     break;
                 case 0:
                     tree->decrement();
-                    std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
+                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = true;
                     break;
                 case 1:
                     tree->decrement();
-                    std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
+                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = false;
                     break;
             }
@@ -59,7 +58,7 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
         {
             tree->right(node);
             node->parent(tree);
-            std::cout << node->data() << " as right child of parent " << node->parent()->data() << ", parent should be " << tree->data() << std::endl;
+            //std::cout << node->data() << " as right child of parent " << node->parent()->data() << ", parent should be " << tree->data() << std::endl;
             fixBalance = true;
         }
         else
@@ -73,16 +72,15 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
             {
                 case -1:
                     fixRightTree(tree, fixBalance);
-                    AVLTree::display();
                     break;
                 case 0:
                     tree->increment();
-                    std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
+                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = true;
                     break;
                 case 1:
                     tree->increment();
-                    std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
+                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = false;
                     break;
             }
@@ -237,19 +235,19 @@ void AVLTree::display()
 
 void AVLTree::leftRotation(Node *c)
 {
-    std::cout << "left rotation on " << c->data() << std::endl;
+    //std::cout << "left rotation on " << c->data() << std::endl;
     Node *a = c->parent();
 
-    if(a)
-    {
-        std::cout << a->data() << std::endl;
-    }
+    //if(a)
+    //{
+        //std::cout << a->data() << std::endl;
+    //}
 
-    std::cout << a->parent() << std::endl;
+    //std::cout << a->parent() << std::endl;
 
     if(a->parent())
     {
-        std::cout << a->parent()->data() << std::endl;
+        //std::cout << a->parent()->data() << std::endl;
 
         if(a->parent()->left() == a)
         {
