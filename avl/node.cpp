@@ -79,7 +79,7 @@ void Node::right(Node *node)
 
 Node* Node::parent()
 {
-    return nodeRight;
+    return nodeParent;
 }
 
 void Node::parent(Node *node)

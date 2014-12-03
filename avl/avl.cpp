@@ -56,11 +56,8 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
     {
         if(tree->left() == NULL)
         {
-            std::cout << "adding " << node->data() << std::endl;
             tree->left(node);
             node->parent(tree);
-            std::cout << tree->left()->data() << " is the left child of " << tree->data() << std::endl;
-            std::cout << node->data() << " is the child of " << node->parent()->data() << std::endl;
             fixBalance = true;
         }
         else
@@ -91,11 +88,8 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
     {
         if(tree->right() == NULL)
         {
-            std::cout << "adding " << node->data() << std::endl;
             tree->right(node);
             node->parent(tree);
-            std::cout << tree->right()->data() << " is the right child of " << tree->data() << std::endl;
-            std::cout << node->data() << " is the child of " << node->parent()->data() << std::endl;
             fixBalance = true;
         }
         else
@@ -131,7 +125,6 @@ void AVLTree::add(int n)
     if(root == NULL)
     {
         root = node;
-        std::cout << "adding root node " << node->data() << std::endl;
     }
     else
     {
