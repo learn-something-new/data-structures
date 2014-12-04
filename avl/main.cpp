@@ -1,11 +1,14 @@
 // in main.cpp
 #include <iostream>
 #include <cstdlib>
+#include <ctime>
 #include "avl.h"
 
 int main()
 {
     AVLTree *avl = new AVLTree();
+
+    srand(time(NULL));
 
     for(int x = 0; x <= 10; x++)
     {
