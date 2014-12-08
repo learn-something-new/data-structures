@@ -22,6 +22,10 @@ A collection of C++ code for me to re-learn data structures including:
 
 * [**Binary Search Tree**](/binarysearchtree)
 
+* [**AVL Tree**](/avl)
+
+####To continue the learning exercise I started rewritting these in [Go](https://github.com/obihann/GoDataStructures), feel free to check that out as well.
+
 ##License
 This tool is protected by the [GNU General Public License v2](http://www.gnu.org/licenses/gpl-2.0.html).
 
