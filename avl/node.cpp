@@ -5,37 +5,15 @@
 Node::Node()
 {
     nBalanceFactor = 0;
-    nodeLeft = NULL;
-    nodeRight = NULL;
-    nodeParent = NULL;
 }
 
-Node::Node(int n, Node *nodeParent)
+Node::Node(int n, Node *nodeParent, Node *left, Node *right)
 {
     nData = n;
     nBalanceFactor = 0;
-    nodeLeft = NULL;
-    nodeRight = NULL;
     nodeParent = nodeParent;
-}
-
-Node::~Node()
-{
-    if(nodeLeft)
-    {
-        Node *temp = nodeLeft;
-        nodeLeft = NULL;
-        delete temp;
-    }
-
-    if(nodeRight)
-    {
-        Node *temp = nodeRight;
-        nodeRight = NULL;
-        delete temp;
-    }
-
-    nodeParent = NULL;
+    nodeLeft = std::auto_ptr<Node> (left);
+    nodeRight = std::auto_ptr<Node> (right);
 }
 
 void Node::add(int n, Node *nodeParent)
@@ -58,32 +36,47 @@ void Node::data(int n)
 
 Node* Node::left()
 {
-    return nodeLeft;
+    return nodeLeft.get();
 }
 
 void Node::left(Node *node)
 {
-    nodeLeft = node;
+    nodeLeft.release();
+
+    if(node)
+    {
+        nodeLeft = std::auto_ptr<Node> (node);
+    }
 }
 
 Node* Node::right()
 {
-    return nodeRight;
+    return nodeRight.get();
 }
 
 void Node::right(Node *node)
 {
-    nodeRight = node;
+    nodeRight.release();
+
+    if(node)
+    {
+        nodeRight = std::auto_ptr<Node> (node);
+    }
 }
 
 Node* Node::parent()
 {
-    return nodeParent;
+    return nodeParent.get();
 }
 
 void Node::parent(Node *node)
 {
-    nodeParent = node;
+    nodeParent.release();
+
+    if(node)
+    {
+        nodeParent = std::auto_ptr<Node> (node);
+    }
 }
 
 void Node::balanceFactor(int n)
@@ -110,7 +103,7 @@ bool Node::hasChildren()
 {
     bool status = false;
 
-    if(nodeLeft || nodeRight)
+    if(nodeLeft.get() || nodeRight.get())
     {
         status = true;
     }
