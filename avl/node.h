@@ -6,14 +6,13 @@ struct Node
     private:
         int nData;
         int nBalanceFactor;
-        Node *nodeLeft;
-        Node *nodeRight;
-        Node *nodeParent;
+        std::auto_ptr<Node> nodeLeft;
+        std::auto_ptr<Node> nodeRight;
+        std::auto_ptr<Node> nodeParent;
 
     public:
         Node();
-        Node(int n, Node* parent = NULL);
-        ~Node();
+        Node(int n, Node* parent = NULL, Node* left = NULL, Node* right = NULL);
 
         void add(int n, Node *parent);
         void del(int n);

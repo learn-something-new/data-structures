@@ -7,14 +7,6 @@ AVLTree::AVLTree()
     root = NULL;
 }
 
-AVLTree::~AVLTree()
-{
-    if(root)
-    {
-        delete root;
-    }
-}
-
 void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
 {
     if(node->data() <= tree->data())
@@ -23,8 +15,6 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
         {
             tree->left(node);
             node->parent(tree);
-            //std::cout << node->data() << " as left child of parent " << node->parent()->data() << ", parent should be " << tree->data() << std::endl;
-            //std::cout << tree->parent() << std::endl;
             fixBalance = true;
         }
         else
@@ -41,12 +31,10 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
                     break;
                 case 0:
                     tree->decrement();
-                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = true;
                     break;
                 case 1:
                     tree->decrement();
-                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = false;
                     break;
             }
@@ -58,7 +46,6 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
         {
             tree->right(node);
             node->parent(tree);
-            //std::cout << node->data() << " as right child of parent " << node->parent()->data() << ", parent should be " << tree->data() << std::endl;
             fixBalance = true;
         }
         else
@@ -75,12 +62,10 @@ void AVLTree::addNode(Node *tree, Node *node, bool &fixBalance)
                     break;
                 case 0:
                     tree->increment();
-                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = true;
                     break;
                 case 1:
                     tree->increment();
-                    //std::cout << "node " << tree->data() << " has a balance of " << tree->balanceFactor() << std::endl;
                     fixBalance = false;
                     break;
             }
@@ -95,7 +80,6 @@ void AVLTree::add(int n)
     if(root == NULL)
     {
         root = node;
-        //std::cout << "adding root node " << root->data() << std::endl;
     }
     else
     {
@@ -104,7 +88,7 @@ void AVLTree::add(int n)
     }
 }
 
-Node* AVLTree::find(int n)
+int AVLTree::find(int n)
 {
     Node* temp = NULL;
 
@@ -113,7 +97,7 @@ Node* AVLTree::find(int n)
         temp = AVLTree::find(n, root);
     }
 
-    return temp;
+    return temp->data();
 }
 
 void AVLTree::del(int n)
@@ -149,6 +133,7 @@ Node* AVLTree::find(int n, Node *node, bool del)
                 {
                     node->left(NULL);
                     AVLTree::reAddBranch(temp);
+                    delete temp;
                 }
             }
 
@@ -160,6 +145,7 @@ Node* AVLTree::find(int n, Node *node, bool del)
                 {
                     node->right(NULL);
                     AVLTree::reAddBranch(temp);
+                    delete temp;
                 }
             }
         }
@@ -179,8 +165,6 @@ void AVLTree::reAddBranch(Node *node)
     {
         AVLTree::addBranch(node->left());
     }
-
-    delete node;
 }
 
 void AVLTree::addBranch(Node *node)
@@ -236,20 +220,10 @@ void AVLTree::display()
 
 void AVLTree::leftRotation(Node *c)
 {
-    //std::cout << "left rotation on " << c->data() << std::endl;
     Node *a = c->parent();
-
-    //if(a)
-    //{
-        //std::cout << a->data() << std::endl;
-    //}
-
-    //std::cout << a->parent() << std::endl;
 
     if(a->parent())
     {
-        //std::cout << a->parent()->data() << std::endl;
-
         if(a->parent()->left() == a)
         {
             a->parent()->left(c);
@@ -278,7 +252,6 @@ void AVLTree::leftRotation(Node *c)
 
 void AVLTree::rightRotation(Node *b)
 {
-    //std::cout << "right rotation on " << b->data() << std::endl;
     Node *a = b->parent();
 
     if(a->parent())
@@ -314,7 +287,7 @@ void AVLTree::fixRightTree(Node *node, bool &fixBalance)
     leftRotation(node->right());
     fixBalance = false;
 
-    if(node->parent()->parent() == NULL)
+    if(node->parent() && node->parent()->parent() == NULL)
     {
         root = node->parent();
     }
