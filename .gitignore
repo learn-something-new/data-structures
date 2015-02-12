@@ -27,5 +27,8 @@
 *.out
 *.app
 
-*/bin/*
 bin/*
+*/bin/*
+
+!bin/.keep
+!*/bin/.keep
